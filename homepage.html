@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choral Guild Kansas City</title>
+  <style>
+    * {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #222;
+      background-color: #fafafa;
+    }
+
+    header {
+      background: #303f9f;
+      color: #fff;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 0.75rem;
+      font-weight: 500;
+      transition: opacity 0.2s;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin: 0 0.75rem;
+    }
+
+    .dropdown-toggle {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1rem;
+      font-family: inherit;
+      padding: 0;
+      transition: opacity 0.2s;
+    }
+
+    .dropdown-toggle:hover {
+      opacity: 0.8;
+    }
+
+    .dropdown-toggle::after {
+      content: ' ▾';
+      font-size: 0.8rem;
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #1a237e;
+      min-width: 180px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 1000;
+      margin-top: 0.5rem;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      color: white;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      display: block;
+      margin: 0;
+      transition: background 0.2s;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #303f9f;
+      opacity: 1;
+      text-decoration: none;
+    }
+
+    .hero {
+      background: linear-gradient(rgba(48, 63, 159, 0.7), rgba(48, 63, 159, 0.7)),
+                  url('https://images.unsplash.com/photo-1523983301931-2c1e65e76c03?auto=format&fit=crop&w=1600&q=80') center/cover;
+      color: white;
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 650px;
+      margin: 0 auto 1.5rem auto;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    }
+
+    .hero .button {
+      background: #ffca28;
+      color: #000;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0.5rem;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .hero .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section h3 {
+      color: #303f9f;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .section p {
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+    }
+
+    .section ul {
+      font-size: 1.05rem;
+      margin-left: 1.5rem;
+    }
+
+    .section ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    .button {
+      background: #303f9f;
+      color: #fff;
+      padding: 0.65rem 1.25rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .button:hover {
+      background: #1a237e;
+    }
+
+    .newsletter-section {
+      background: #f0f0f0;
+      padding: 3rem 2rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0.5rem;
+      max-width: 500px;
+      margin: 1.5rem auto 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-form input[type="email"] {
+      flex: 1;
+      min-width: 250px;
+      padding: 0.75rem;
+      border: 2px solid #303f9f;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .newsletter-form button {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    footer {
+      background: #1a237e;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: #ffca28;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      margin-top: 1rem;
+    }
+
+    .social-icons a {
+      color: #ffca28;
+      margin: 0 0.5rem;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      nav a, .dropdown {
+        margin: 0.25rem 0.5rem;
+      }
+
+      .dropdown-menu {
+        position: static;
+        transform: none;
+        margin-top: 0.25rem;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        display: none;
+      }
+
+      .dropdown.active .dropdown-menu {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Choral Guild Kansas City</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <span class="dropdown-toggle">Who We Are</span>
+        <div class="dropdown-menu">
+          <a href="who-we-are.html">Board</a>
+          <a href="artistic-director.html">Artistic Director</a>
+        </div>
+      </div>
+      <a href="contact.html">Contact</a>
+      <a href="https://givebutter.com/CGKC" target="_blank" rel="noopener">Donate</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h2>Bringing Voices Together. Inspiring Kansas City Through Choral Artistry.</h2>
+    <p>The Choral Guild Kansas City celebrates the power of the human voice through vibrant performances, community collaboration, and artistic excellence.</p>
+    <a href="#season" class="button">Our First Season – Coming Spring 2026</a>
+    <a href="https://givebutter.com/CGKC" target="_blank" rel="noopener" class="button">Donate Now</a>
+  </section>
+
+  <!-- WELCOME SECTION -->
+  <section id="about" class="section">
+    <h3>Welcome to Choral Guild Kansas City!</h3>
+    <p>We're thrilled to get our first season off the ground in Spring 2026, and we can't wait to introduce you to the team. Earlier this year, we received our official 501(c)(3) nonprofit status, marking an exciting milestone in our journey to bring choral music to life in Kansas City.</p>
+    <p>Join us as we build something new — a home for singers and audiences who believe in the joy of community and the transformative power of song.</p>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="section">
+    <h3>Our Mission</h3>
+    <p>To enrich Kansas City's cultural landscape through choral performance, education, and artistic collaboration.</p>
+
+    <h3>Our Vision</h3>
+    <p>We envision a vibrant community where voices unite to inspire, heal, and connect.</p>
+  </section>
+
+  <!-- UPCOMING SEASON -->
+  <section id="season" class="section">
+    <h3>Our Inaugural Season – Coming Spring 2026</h3>
+    <p>Stay tuned for concert announcements and ticket information! We can't wait to share our first performances with you.</p>
+  </section>
+
+  <!-- GET INVOLVED -->
+  <section id="involved" class="section">
+    <h3>Get Involved</h3>
+    <p>Love choral music? There are many ways to participate:</p>
+    <ul>
+      <li><strong>Sing With Us</strong> – audition info coming soon</li>
+      <li><strong>Volunteer or Partner</strong> – help us grow our reach</li>
+      <li><strong>Donate</strong> – support the Guild's mission</li>
+    </ul>
+    <a href="https://givebutter.com/CGKC" target="_blank" rel="noopener" class="button">Support Our Mission</a>
+  </section>
+
+  <!-- NEWS & UPDATES -->
+  <section id="news" class="section">
+    <h3>News & Updates</h3>
+    <p><strong>October 2025:</strong> Choral Guild Kansas City receives 501(c)(3) status!</p>
+    <p><strong>Spring 2026:</strong> Debut concert season announced – join our mailing list for details.</p>
+  </section>
+
+  <!-- NEWSLETTER SIGNUP -->
+  <section id="newsletter" class="section newsletter-section">
+    <h3>Stay Connected – Join Our Newsletter</h3>
+    <p>Be the first to hear about upcoming concerts, auditions, and special events!</p>
+    <form class="newsletter-form">
+      <input type="email" placeholder="Enter your email address" required>
+      <button type="submit" class="button">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Choral Guild Kansas City. All rights reserved.</p>
+    <p>Choral Guild Kansas City is a 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent permitted by law.</p>
+    <p><a href="https://givebutter.com/CGKC" target="_blank" rel="noopener" style="color: #ffca28; font-weight: bold; font-size: 1.1rem;">Support Our Mission - Donate Today</a></p>
+    <p>Kansas City, Missouri | <a href="mailto:info@choralguildkc.org">info@choralguildkc.org</a></p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/choralguildkc" target="_blank" rel="noopener">Facebook</a> |
+      <a href="https://www.instagram.com/choralguildkc" target="_blank" rel="noopener">Instagram</a> |
+      <a href="https://www.youtube.com/@choralguildkc" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scroll animation on page load and scroll
+    const sections = document.querySelectorAll('.section');
+    
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Newsletter form submission
+    document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = e.target.querySelector('input[type="email"]').value;
+      alert('Thank you for subscribing! We\'ll be in touch soon.');
+      e.target.reset();
+    });
+
+    // Mobile dropdown toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const dropdown = document.querySelector('.dropdown');
+      const dropdownToggle = document.querySelector('.dropdown-toggle');
+      
+      if (window.innerWidth <= 768) {
+        dropdownToggle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          dropdown.classList.toggle('active');
+        });
+
+        document.addEventListener('click', function() {
+          dropdown.classList.remove('active');
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
